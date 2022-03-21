@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import { Provider } from 'react-redux';
+import {  Layout } from 'antd';
+import { store } from 'store'
+import { AddTodoForm } from 'ui/todo';
+import { TodoList } from 'ui/todo';
+import 'antd/dist/antd.css'
+
+
+/*
+  * TODO: 
+    - Добавить свою сборку webpack
+    - Ограничить уровень вложенности элементов
+*/
+
+
+const {  Content, Footer } = Layout;
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Layout className="layout">
+        <Content style={{ padding: '50px' }}>
+          <TodoList />
+          <br />
+          <AddTodoForm />
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>Todo App ©2022</Footer>
+      </Layout>
+    </Provider>
   );
 }
 
